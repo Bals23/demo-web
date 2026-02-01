@@ -1,12 +1,21 @@
-const form = document.getElementById("contact-form");
-const estado = document.getElementById("estado");
+document.addEventListener("DOMContentLoaded", function () {
+  const form = document.getElementById("contact-form");
+  const estado = document.getElementById("estado");
 
-form.addEventListener("submit", function (e) {
-  e.preventDefault();
+  if (!form) {
+    console.log("Formulario no encontrado");
+    return;
+  }
 
-  const datos = new FormData(form);
-  const nombre = datos.get("nombre");
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
 
-  estado.textContent = "Gracias " + nombre + ", mensaje preparado para enviar.";
-  form.reset();
+    const datos = new FormData(form);
+    const nombre = datos.get("nombre");
+
+    estado.textContent = "Gracias " + nombre + ", mensaje preparado para enviar.";
+    estado.style.color = "green";
+
+    form.reset();
+  });
 });
