@@ -2,20 +2,35 @@ document.addEventListener("DOMContentLoaded", function () {
   const form = document.getElementById("contact-form");
   const estado = document.getElementById("estado");
 
-  if (!form) {
-    console.log("Formulario no encontrado");
-    return;
-  }
-
-  form.addEventListener("submit", function (e) {
+  form.addEventListener("submit", async function (e) {
     e.preventDefault();
 
-    const datos = new FormData(form);
-    const nombre = datos.get("nombre");
+    const datos = {
+      nombre: form.nombre.value,
+      email: form.email.value,
+      mensaje: form.mensaje.value
+    };
 
-    estado.textContent = "Gracias " + nombre + ", mensaje preparado para enviar.";
-    estado.style.color = "green";
+    estado.textContent = "Enviando...";
+    estado.style.color = "black";
 
-    form.reset();
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(datos)
+      });
+
+      const result = await res.json();
+
+      estado.textContent = result.message;
+      estado.style.color = "green";
+      form.reset();
+    } catch (error) {
+      estado.textContent = "Error al enviar";
+      estado.style.color = "red";
+    }
   });
 });
