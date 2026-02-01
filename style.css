@@ -25,3 +25,18 @@ button {
   padding: 10px 20px;
   cursor: pointer;
 }
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+input, textarea {
+  padding: 10px;
+  font-size: 14px;
+}
+
+#estado {
+  margin-top: 10px;
+  color: green;
+}
