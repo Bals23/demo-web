@@ -1,12 +1,27 @@
-const form = document.getElementById("contact-form");
-const estado = document.getElementById("estado");
+body {
+  font-family: Arial, sans-serif;
+  background: #f4f4f4;
+  padding: 40px;
+  max-width: 800px;
+  margin: auto;
+}
 
-form.addEventListener("submit", function (e) {
-  e.preventDefault();
+header {
+  margin-bottom: 40px;
+}
 
-  const datos = new FormData(form);
-  const nombre = datos.get("nombre");
+h1 {
+  color: #222;
+}
 
-  estado.textContent = "Gracias " + nombre + ", mensaje preparado para enviar.";
-  form.reset();
-});
+section {
+  background: #fff;
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+}
+
+button {
+  padding: 10px 20px;
+  cursor: pointer;
+}
