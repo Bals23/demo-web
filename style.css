@@ -1,42 +1,12 @@
-body {
-  font-family: Arial, sans-serif;
-  background: #f4f4f4;
-  padding: 40px;
-  max-width: 800px;
-  margin: auto;
-}
+const form = document.getElementById("contact-form");
+const estado = document.getElementById("estado");
 
-header {
-  margin-bottom: 40px;
-}
+form.addEventListener("submit", function (e) {
+  e.preventDefault();
 
-h1 {
-  color: #222;
-}
+  const datos = new FormData(form);
+  const nombre = datos.get("nombre");
 
-section {
-  background: #fff;
-  padding: 20px;
-  margin-bottom: 20px;
-  border-radius: 5px;
-}
-
-button {
-  padding: 10px 20px;
-  cursor: pointer;
-}
-form {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-input, textarea {
-  padding: 10px;
-  font-size: 14px;
-}
-
-#estado {
-  margin-top: 10px;
-  color: green;
-}
+  estado.textContent = "Gracias " + nombre + ", mensaje preparado para enviar.";
+  form.reset();
+});
